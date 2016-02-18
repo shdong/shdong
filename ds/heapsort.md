@@ -11,7 +11,7 @@ Heap Sort is one of the best sorting methods being in-place and with no quadrati
 
 Heap is a list that satisfy the following special heap properties :
 
-  Suppost a[1 . . n], where n = length[a].  Then each element a[i] is either [greater than or equal to] or [less than or equal to] each of its children a[2i] and a[2i\+1]  ( if its children  exist,that is  2i<n , 2i+1<n). 
+  Suppost a[1 . . n], where n = length[a].  Then each element a[i] is either [greater than or equal to] or [less than or equal to] each of its children a[2i] and a[2i\+1].  ( if its children  exist,that is  2i<n , 2i+1<n). 
 
 If the parent nodes are greater than their children, heap is called a **Max-Heap**, and if the parent nodes are smalled than their child nodes, heap is called **Min-Heap**.
 
@@ -25,10 +25,10 @@ If the parent nodes are greater than their children, heap is called a **Max-Heap
 
    ![](http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13ex-Fig07.jpg)
 
-#### Reference  
+####Reference
 
-[](http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13-HeapSortEx.htm)  
+[](http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13-HeapSortEx.htm)
 
-[](http://www.studytonight.com/data-structures/heap-sort)  
+[](http://www.studytonight.com/data-structures/heap-sort)
 
 [](https://www.cs.usfca.edu/~galles/visualization/HeapSort.html)  
