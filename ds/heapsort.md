@@ -30,7 +30,7 @@ If the parent nodes are greater than their children, heap is called a **Max-Heap
 1) first, the  unordered list is converted to a heap using the function buildheap()  
   which depend on a satisfyheap() which adjust a node i to satisfy the heap properties.
 
-Please see ** "A Building the heap tree" ** in refer 1)
+Please see **A Building the heap tree** in refer 1)
 
 2) second,  the first element of the Heap is either largest or smallest(  
  depending upon Max-Heap or Min-Heap), so we swap the first element  and  
@@ -38,7 +38,7 @@ Please see ** "A Building the heap tree" ** in refer 1)
  Then we adjust the remain elements to a heap y calling satisfyheap()   
  so that the first element in the reamin elements satisfy the heap properties.
 
-Please see ** "B Sorting - performing deleteMax operations:" ** in refer 1)
+Please see **B Sorting - performing deleteMax operations** in refer 1)
 
 
 ```c++
@@ -115,7 +115,7 @@ void main()
 
 
 **Reference**
-  
+
 1. [http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13-HeapSortEx.htm](http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13-HeapSortEx.htm)
 
 2. [http://www.studytonight.com/data-structures/heap-sort](http://www.studytonight.com/data-structures/heap-sort)
