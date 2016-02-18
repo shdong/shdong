@@ -1,5 +1,5 @@
 
-## Heap Sort Algorithm
+##Heap Sort Algorithm
 
 Heap Sort is one of the best sorting methods being in-place and with no quadratic worst-case scenarios. Heap sort algorithm is divided into two basic parts :
 
@@ -24,6 +24,8 @@ If the parent nodes are greater than their children, heap is called a **Max-Heap
    A Heap be imagine as a sequential-memory of a Complete Binary Tree with special Shape Property.
 
    ![](http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13ex-Fig07.jpg)
+
+##How Heap Sort Works
 
 ####Reference
 
