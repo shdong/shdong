@@ -35,7 +35,7 @@ If the parent nodes are greater than their children, heap is called a **Max-Heap
 
     Please see ** "B Sorting - performing deleteMax operations:" ** in refer 1)
 
-    
+
 
  ```
 void satisfyheap(int a[], int i, int heapsize)
@@ -108,11 +108,11 @@ void main()
   getch();
 }
 
-    ```
+```
 
 
 
-####Reference
+**Reference**
 
 [](http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13-HeapSortEx.htm)
 
