@@ -114,11 +114,9 @@ void main()
 ```
 
 
+**Reference**  
+1. [](http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13-HeapSortEx.htm)
 
-**Reference**
+2. [](http://www.studytonight.com/data-structures/heap-sort)
 
-[](http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13-HeapSortEx.htm)
-
-[](http://www.studytonight.com/data-structures/heap-sort)
-
-[](https://www.cs.usfca.edu/~galles/visualization/HeapSort.html)  
+3. [](https://www.cs.usfca.edu/~galles/visualization/HeapSort.html)  
