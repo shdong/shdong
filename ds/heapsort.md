@@ -26,6 +26,9 @@ If the parent nodes are greater than their children, heap is called a **Max-Heap
    ![](http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13ex-Fig07.jpg)
 
 #### Reference  
+
 [](http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L13-HeapSortEx.htm)  
+
 [](http://www.studytonight.com/data-structures/heap-sort)  
+
 [](https://www.cs.usfca.edu/~galles/visualization/HeapSort.html)  
