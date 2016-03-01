@@ -57,6 +57,32 @@ void outSqList(SqList &L) {
 	std::cout << "\n";
 }
 
+SqList  merge2(SqList &L1, SqList &L2) {
+	SqList L;
+	initSqList(L, L1.length + L2.length);	
+	int i = 0, j = 0, k = 0;
+	while (i < L1.length && j < L2.length) {//都没走完
+		if (L1.data[i] <= L2.data[j]) {
+			insert_back(L,L1.data[i]);
+			i++;
+		}
+		else {
+			insert_back(L, L2.data[j]);
+			j++;
+		}
+	}
+
+	while (i < L1.length) { //L1没走完，L2走完了
+		insert_back(L, L1.data[i]);
+		i++;
+	}
+
+	while (j < L2.length) { //L1没走完，L2走完了
+		insert_back(L, L2.data[j]);
+		j++;
+	}
+	return L;
+}
 int main() {
 	SqList L1, L2, L;
 	ElemType e;
@@ -76,7 +102,7 @@ int main() {
 
 	outSqList(L2);
 
-	L = merge(L1, L2);
+	L = merge2(L1, L2);  //merge(L1, L2);
 	outSqList(L);
 	return 0;
 }
