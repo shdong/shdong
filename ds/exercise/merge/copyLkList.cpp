@@ -48,8 +48,9 @@ bool insert_back(LNode *L, ElemType e) {
 bool copyLkList_2(LNode* srcL, LNode* tgtL) {
 	initLkList(tgtL);
 	LNode *p = srcL->next;
-	
+
 	while (p) {
-		insert_back(tgtL,p->data);
+		insert_back(tgtL, p->data);
 		p = p->next;
 	}
+}
