@@ -44,7 +44,7 @@ int main(){
 
 ```
 #include <iostream>   
-int main_00() {
+int main() {
 	int x, y;
 	std::cin >> x >> y;   //std是标准库名字空间
 	std::cout << x << " " << y << '\n';
