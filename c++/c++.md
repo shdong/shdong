@@ -62,6 +62,8 @@ std::cin是标准名字空间std中的一个变量，表示一个输入对象（
 
 ">>"是输入运算符，表示从一个流对象(如这里的std::cin)输入数据到其后面跟着的变量(如x、y)中。类似的，"<<"是输出运算符，表示将其右边的一个变量输出到其左边的输出流对象(如这里的std::cout)。
 
+因为表达式"std::cin >> x"的结果仍然是"std::cin "，因此输入流运算符">>"可以接连使用。如"std::cin >> x >> y"相当于2次具体输入"std::cin >> x"和"std::cin >> x"。
+
 
 
 1.  [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
