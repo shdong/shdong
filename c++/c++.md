@@ -40,6 +40,26 @@ int main(){
 ```
 
 
+**输入输出**
+
+```
+#include <iostream>   
+int main_00() {
+	int x, y;
+	std::cin >> x >> y;   //std是标准库名字空间
+	std::cout << x << " " << y << '\n';
+	return 0;
+}
+```
+
+C++增加了一个新的单行注释，即从“//”开头的这一行后面的都是程序注释而不是代码。
+
+C++提供了实现各种输入输出功能的各种类，成为“输入输出流库”，它将输入输出看成从或向一个对象流动的数据流。如<iostream>就是一个输入输出库的头文件，其中包含了各种输入输出相关的类的定义。
+
+为了避免程序中变量或类的名称相同发生冲突(如不同的软件库都提供了一个叫做Vector3的数学向量类，就会发生冲突)，通过将 类型名、变量名等都放入某个所谓的“名字空间(namespace)”就可以避免这种名字冲突。如两个不同班级都有一个叫做“李平”的同学，我们就可以通过这两个李平所属的“班级（相当于名字空间）”来区分它们。如 “班级A::李平”、“班级B::李平”。
+
+
+
 1.  [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
 
 2. [http://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm](http://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm)
