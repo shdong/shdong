@@ -601,6 +601,8 @@ int main(){ Distance D;
 
 ###函数重载，运算符重载(function overloading, operator overloading)
 
+**#函数重载(function overloading)**
+
 C语言不能有两个同名函数，而C++则允许在一个名字空间里定义多个同名的函数，
 只要它们的参数列表不一样，这种行为称为*函数重载(function overloading)*。
 
@@ -659,6 +661,69 @@ int main(void)
    return 0;
 }
 ```
+运算符重载(operator overloading)
+
+上面对Vector2类型的对象用函数add进行相加，不如通常的算术运算符'+'来得自然。  
+为了能用'+'对两个Vector2类的对象进行加法运算，我们需要对类Vector2重载“加法运算符”，  
+即告诉加法运算符'+'，如果对它们进行相加。加法运算符的完整函数名是"operator+"，  
+因此，可以如下重新定义参数列表是两个Vector2对象的"operator+"函数。
+```
+struct Vector2{
+	double x,y;
+	Vector2(double x0,double y0) :x(x0),y(y0) { }
+};
+Vector2 operator+(Vector2 v1,Vector2 v2){
+	return Vector2(v1.x+v2.x,v1.y+v2.y);
+}
+int main(){
+	Vector2 v1(2.5, 3.5),v2(-1.2, 7.6);
+	Vector2 v = v1+v2;  //实际上调用的是: Vector2 v = operator+(v1,v2);
+	
+	return 0;
+}
+
+```
+假如Vector2的数据x,y是私有数据，而“operator+”被定义为全局函数（外部函数），则  
+在该函数中访问v1.x即v1的私有数据x是非法的。解决这个问题的方式有两种
+
+  - 方法一：将operator+定义为Vector2的成员函数  
+  ···
+  struct Vector2{
+  private:
+	double x,y;
+  public:
+	Vector2(double x0,double y0) :x(x0),y(y0) { }
+	Vector2 operator+(Vector2 v2){  //相当于 Vector2 operator+(Vector2 *this,Vector2 v2)
+         return Vector2(this->x+v2.x, this->y+v2.y);
+    } 
+  };
+ 
+  int main(){
+    	Vector2 v1(2.5, 3.5),v2(-1.2, 7.6);
+	   Vector2 v = v1+v2;  //实际上调用的是: Vector2 v = v1.operator+(v2);
+	   return 0;
+   }
+  ··· 
+  - 方法二： 在类Vector2中将外部函数operator声明为其友元。
+  ```
+  struct Vector2{
+  private:
+	double x,y;
+  public:
+	Vector2(double x0,double y0) :x(x0),y(y0) { }
+	friend Vector2 operator+(Vector2 v1,Vector2 v2)； //类Vector2将该函数声明为自己的友元
+  };
+
+   Vector2 operator+(Vector2 v1,Vector2 v2){
+	return Vector2(v1.x+v2.x,v1.y+v2.y);
+   }
+  int main(){
+    	Vector2 v1(2.5, 3.5),v2(-1.2, 7.6);
+	   Vector2 v = v1+v2;  //实际上调用的是: Vector2 v = v1.operator+(v2);
+	   return 0;
+   }
+   ```
+
 
 ###模板(template)
 
