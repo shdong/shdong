@@ -806,7 +806,7 @@ C++类模板（或称模板类）则可以定义一个泛型的向量类。如�
 
 ##标准模板库
 
-C++的标准模板库中定义了许多实用的类模板和函数模板(算法)。
+C++的标准模板库(STL)中定义了许多实用的类模板和函数模板(算法)。
 
 例如向量vector类模板表示一个顺序表（数组）。
 ```
@@ -833,7 +833,10 @@ int main(){
                
 }
 ```  
+关于标准模板库(STL)，可以参考[c++ stl tutorial](http://www.tutorialspoint.com/cplusplus/cpp_stl_tutorial.htm)
 
+
+ 
 ###参考资料(Reference)：
 
 1. [http://www.w3schools.in/cplusplus/intro/](http://www.w3schools.in/cplusplus/intro/) 
