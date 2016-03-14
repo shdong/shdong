@@ -601,7 +601,7 @@ int main(){ Distance D;
 
 ###函数重载，运算符重载(function overloading, operator overloading)
 
-**#函数重载(function overloading)**
+**函数重载(function overloading)**
 
 C语言不能有两个同名函数，而C++则允许在一个名字空间里定义多个同名的函数，
 只要它们的参数列表不一样，这种行为称为*函数重载(function overloading)*。
@@ -661,7 +661,7 @@ int main(void)
    return 0;
 }
 ```
-运算符重载(operator overloading)
+**运算符重载(operator overloading)**
 
 上面对Vector2类型的对象用函数add进行相加，不如通常的算术运算符'+'来得自然。  
 为了能用'+'对两个Vector2类的对象进行加法运算，我们需要对类Vector2重载“加法运算符”，  
