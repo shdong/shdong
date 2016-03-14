@@ -121,10 +121,11 @@ std::cin是标准名字空间std中的一个变量，表示一个输入对象（
 
 C++中的每个变量(实际就是一块内存)都要说明其数据类型，类型的作用有：决定该类型变量占据多大内存、取值范围、对该类型变量能进行哪些运算。
 
-定义变量的格式是：  
-类型名  变量名;
+定义变量的格式是： 
 
-类型名  变量1名, 变量2名, 变量3名, 变量4名; 
+*类型名  变量名;*
+
+*类型名  变量1名, 变量2名, 变量3名, 变量4名; *
 
 每个变量实际就是一块内存。它存储在计算机的某个内存地址处，占据一定的内存大小。
 
@@ -153,12 +154,13 @@ const double PI =  3.14159265;
 
 ##存储类(storage class )
 
-这里的class不是C++中的类class，而是类别的意思。存储类说明了变量量的生命周期和z作用域(可见性)  
-C++的存储类有下列几种：  
-  -Automatic
-  -External
-  -Static
-  -Register
+这里的class不是C++中的类class，而是类别的意思。存储类说明了变量的生命周期和作用域(可见性)  
+C++的存储类有下列几种：
+
+  - Automatic
+  - External
+  - Static
+  - Register
 
   ***自动存储类 Automatic(auto) storage class***
 
@@ -222,6 +224,7 @@ void write_extern(void)
 关系(Relational)运算符、逻辑(logical)运算符、位(bitwise)运算符、赋值(Assignment)运算符、  
 以及其他一些运算符,如逗号运算符',',检测内存大小运算符sizeof, 取地址运算符&, 取内容运算符*, 条件运算符?: 。
 
+更多[运算符信息](http://www.w3schools.in/cplusplus/operators/)或 [这里](http://www.tutorialspoint.com/cplusplus/cpp_operators.htm)
 
 ##关键字(Keywords)
 
