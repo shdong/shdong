@@ -551,7 +551,18 @@ C++的一个重要特性是继承(Inheritance)，继承是一种重用和扩展�
 
 ![继承(Inheritance)关系](https://github.com/shdong/shdong/blob/master/c++/inheritance.jpg)
 
+**可见模式visibility mode**
 
+通过关键字public,protected,private控制基类成员在派生类中的可见性（可访问性）。  
+因此根据可见性的不同，可将继承分为：  
+  - 私有继承private inheritance - 当声明是从基类私有(private)派生时，基类的公开(public)  
+  和保护(protected)成员在派生类中都成了私有(private)成员。
+  - 保护继承protected inheritance - 当声明是从基类保护(protected)派生时，基类的公开(public)  
+  和保护(protected)成员在派生类中都成了保护(protected)成员。
+  - 公开继承public inheritance - 当声明是从基类公开(publice)派生时，基类的公开(public)  
+  和保护(protected)成员在派生类中仍然分别为公开(public) 和保护(protected)成员。
+
+![可见模式](https://github.com/shdong/shdong/blob/master/c++/control_inheritance.jpg)
 
 ###友元(friends)
 
