@@ -727,6 +727,113 @@ int main(){
 
 ###模板(template)
 
+**函数模板**
+
+假如要求针对不同类型的两个变量的最小值函数，我们需要对每种参数类型定义一个对应的函数，如
+```
+  int min(int a ,int b){
+     if(a < b) return a;
+     else return b;
+  }
+  float min(float a ,float b){
+     if(a < b) return a;
+     else return b;
+  }
+  double min(double a ,double b){
+     if(a < b) return a;
+     else return b;
+  }
+```
+ 显然这些函数的代码都是一样的，唯一不同的是其参数和返回值的类型，我们只要复制、粘贴、  
+ 修改一下函数规范就可以将同行的函数体用于其它类型的参数。尽管很方面，但复制粘帖修改也  
+ 比较麻烦，更主要的问题是这样的函数不能用于将来可能出现的新的类型参数。
+
+ 解决这个问题的方法是定义一个模板函数，将其中的参数和返回值用所谓的“模板参数”进行参数化。
+ ```
+ template< class Type>
+ Type min(Type a ,Type b){
+     if(a < b) return a;
+     else return b;
+  }
+ ```
+ 在实际调用这个函数时，编译器通常会根据传入的实际参数自动推断出模板参数的类型，  
+ 从而自动帮助我们生成对应参数类型的函数版本，而不需要我们自己编写该参数类型的  
+ 函数版本。
+ ```
+    int main(){
+    	int a=3,b = 5;
+    	float f = 2.5, g = 3.5;
+    	double x = 2.4, y = 6.5;
+    	int c = min(a, b);   //编译器编译到该句时，会自动生成int类型作为参数和返回值
+    	                    // 的min函数  int min(int a, int b);
+    	float h = min(f, h) ;  //编译器编译到该句时，会自动生成int类型作为参数和返回值
+    	                     // 的min函数  float min(float a, float b);
+    	float h = min(f, h) ;  //编译器编译到该句时，会自动生成int类型作为参数和返回值
+    	                    // 的min函数  double min(double a, double b);
+    	double z = min(x, y); 
+    }
+ ```
+**类模板**
+
+上述我们定义的Vector2只能表示分量数值类型是double类型的平面向量，如要  
+要表示int类型或float类型的平面向量，需要重新定义不同名字的向量类。如  
+Vector2i ,Vector2f。对于不同数值类型都要定义这样一个类，很不方便。
+C++类模板（或称模板类）则可以定义一个泛型的向量类。如下：
+ ```
+ template < class Type>
+ class Vector2{
+   private:
+	Type x,y;
+  public:
+	Vector2(Type x0,Type y0) :x(x0),y(y0) { }
+	Vector2 operator+(Vector2 v2){ //相当于 Vector2 operator+(Vector2 *this,Vector2 v2)
+       return Vector2(this->x+v2.x, this->y+v2.y);
+    } 
+  };
+
+  
+
+   int main(){    	
+    	Vector2<int> u(3, 5) ,u2(4, 6);
+    	Vector2<float> v(3.5 ,5.5)，v2(2.5, 10.5);	  //
+        Vector2<int> u3 = u + u2;   // u. operator(u2);
+        Vector2<int> v3 = v + v2;   // v. operator(v2);
+	   return 0;
+   }
+ ```
+ 编译器根据Vector2<int>从类模板Vector2中生成int类型的一个具体Vector2类的所有代码，   
+ 根据Vector2<float>从类模板Vector2中生成float类型的另一个具体Vector2类的所有代码。 
+
+##标准模板库
+
+C++的标准模板库中定义了许多实用的类模板和函数模板(算法)。
+
+例如向量vector类模板表示一个顺序表（数组）。
+```
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main(){
+	vector< int > ia ; //int类型的向量
+	vector< float > fa ; //float类型的向量
+	ia.push_back(2);   //从后面加入一个整数2
+	ia.push_back(3);   //从后面加入一个整数3
+	ia.push_back(4);   //从后面加入一个整数4
+	int n = ia.size();  //ia向量中整数的个数
+	for(int i = 0 ; i< n ;i++)
+        std::cout << ia[i]<<"\n";
+
+    fa.push_back(2.5);   //从后面加入一个整数2
+	fa.push_back(3.5);   //从后面加入一个整数3
+	fa.push_back(4.5);   //从后面加入一个整数4
+	int n = fa.size();
+	for(int i = 0 ; i< n ;i++)
+        std::cout << fa[i]<<"\n";
+               
+}
+```  
+
 ###参考资料(Reference)：
 
 1. [http://www.w3schools.in/cplusplus/intro/](http://www.w3schools.in/cplusplus/intro/) 
