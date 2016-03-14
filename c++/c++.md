@@ -223,6 +223,12 @@ void write_extern(void)
 以及其他一些运算符,如逗号运算符',',检测内存大小运算符sizeof, 取地址运算符&, 取内容运算符*, 条件运算符?: 。
 
 
+##关键字(Keywords)
+
+C/C++程序中定义变量、函数或类型时，不用使用那些被用作C++关键字的标识符(identifier)。这些被C++ 语言保留的标识符称为关键字。如[C++ Keywords List](http://www.w3schools.in/cplusplus/keywords/)
+
+
+
 1.  [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
 
 2. [http://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm](http://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm)
