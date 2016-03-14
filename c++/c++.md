@@ -70,22 +70,22 @@ std::cin是标准名字空间std中的一个变量，表示一个输入对象（
 
   - windows系统上可以安装[Visual Studio(VS)](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx)、[CodeBlocks](http://www.codeblocks.org/downloads)、[Dev-C++](https://sourceforge.net/projects/orwelldevcpp/)，[MimGW](http://www.mingw.org/)等集成开发环境，集成开发环境除了编译器，还有编辑器（用于编写代码）、连接器（用于将编译器生成的目标文件连接成一个完整的可执行程序）、调试器(Debuger，用于调试程序的错误等)等。
 
- - Unix/Linux上一般都安装了C++编译器gcc,可以用下列命令检查是否安装了gcc:   
+  - Unix/Linux上一般都安装了C++编译器gcc,可以用下列命令检查是否安装了gcc:   
  '''gcc-v'''
 
- - Mac上有[XCode](https://developer.apple.com/technologies/tools/)集成开发环境
+  - Mac上有[XCode](https://developer.apple.com/technologies/tools/)集成开发环境
 
- **C++程序结构**
+**C++程序结构**
 
-    一个程序通常包含下列一些：  
-    - 文档  
-    - 预处理语句  
-    - 全局声明  
-    - main函数
-       - 局部变量  
-       - 程序语句和表达式  
-    - 用户定义函数
-    - 用户定义类型，如类类型（struct，class,enum) 
+一个程序通常包含下列一些：  
+  - 文档    
+  - 预处理语句    
+  - 全局声明    
+  - main函数  
+       - 局部变量    
+       - 程序语句和表达式    
+  - 用户定义函数  
+  - 用户定义类型，如类类型（struct，class,enum)   
 
 
 1.  [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
