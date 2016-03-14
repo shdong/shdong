@@ -274,6 +274,39 @@ for(n=0; n < sizeof(newArray); n++)
 int a = newArray[5]; // Assigning 5th element of array value to integer 'a'.
 ```
 
+##指针(Pointers)
+
+指针变量定义语法：  
+类型 *变量名；
+
+如：
+```
+int  *height;
+char  *age;
+```
+定义了指针变量height和age,height用于存储int型变量的地址。age用于存储char型变量的地址。  
+```
+#include<iostream>
+using namespace std;
+
+int main ()
+{
+   int  n = 20, *ptr;  //定义了int型变量n 和int指针型的变量ptr
+
+   ptr = &n;  //ptr存储的是n的地址，其中&n得到了n的地址。
+ 
+   cout << "变量n的地址是: " << &n << endl;
+   
+   // 打印存储在指针变量ptr中的地址(指针)  
+   cout << "存储在ptr变量中的地址是: " << ptr << endl;
+
+   //打印存储在  *ptr 里的值  
+   cout << "变量 *ptr 的值是: " << *ptr << endl;
+   
+   system("pause");
+   return 0;
+}
+```
 
 
 ###参考资料(Reference)：
