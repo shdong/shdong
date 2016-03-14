@@ -570,7 +570,101 @@ class Box
 }
 ```
 
+**构造函数(Constructors)、析构函数（Deconstructors）**
+```
+//1.如果类的所有成员是公开的，我们在定义该变量时，可以用初始化成员列表（initialization list）
+// 或均匀初始化（uniform initialization (in C++11):）来进行初始化
+class Foo
+{
+public:
+  int m_x;
+  int m_y;
+};
 
+int main()
+{
+  Foo foo1 = { 4, 5 }; // initialization list
+  Foo foo2{ 6, 7 }; // uniform initialization (C++11)
+
+  return 0;
+}
+```
+
+```
+//如果类存在私有的数据成员变量，则不能用上述方法初始化类对象(类变量)，
+//这就需要叫做“构造函数”（constructors）的特殊成员函数来完成对类对象的初始化。
+//与类名相同的成员函数叫做“构造函数”，一个类可以有多个不同的构造函数，只要它们的参数列表是不同的
+//2. “默认构造函数” （Default constructors）：不带参数或参数都有默认值的构造函数
+
+#include <iostream>
+
+class Fraction
+{
+private:
+  int m_numerator;
+  int m_denominator;
+public:
+  Fraction() // 默认构造函数(default constructor)
+  {
+    m_numerator = 0;
+    m_denominator = 1;
+  }
+
+  int getNumerator() { return m_numerator; }
+  int getDenominator() { return m_denominator; }
+  double getValue() { return static_cast<double>(m_numerator) / m_denominator; }
+};
+
+int main()
+{
+  Fraction frac; // Since no arguments, calls Fraction() default constructor
+  std::cout << frac.getNumerator() << "/" << frac.getDenominator() << '\n';
+
+  return 0;
+}
+```
+
+多个构造函数
+
+```
+#include <cassert>
+class Fraction2
+{
+private:
+  int m_numerator;
+  int m_denominator;
+
+public:
+  Fraction2() // default constructor
+  {
+    m_numerator = 0;
+    m_denominator = 1;
+  }
+
+  // Constructor with parameters
+  Fraction2(int numerator, int denominator = 1)
+  {
+    assert(denominator != 0);
+    m_numerator = numerator;
+    m_denominator = denominator;
+  }
+
+  int getNumerator() { return m_numerator; }
+  int getDenominator() { return m_denominator; }
+  double getValue() { return static_cast<double>(m_numerator) / m_denominator; }
+};
+
+int main_32() {
+  Fraction2 frac; //default constructor
+  Fraction2 frac2(2,3);  //调用的是构造函数Fraction2(int numerator, int denominator = 1)
+  Fraction2 frac3(4); //调用的是构造函数Fraction2(int numerator, int denominator = 1)
+
+  std::cout << frac.getNumerator() << "/" << frac.getDenominator() << '\n';
+  std::cout << frac2.getNumerator() << "/" << frac2.getDenominator() << '\n';
+  std::cout << frac3.getNumerator() << "/" << frac3.getDenominator() << '\n';
+  return 0;
+}
+```
 ###继承(Inheritance)
 
 C++的一个重要特性是继承(Inheritance)，继承是一种重用和扩展已有类(class)而无需修改它们的机制。
@@ -581,6 +675,58 @@ C++的一个重要特性是继承(Inheritance)，继承是一种重用和扩展�
 
 如果一个派生类(子类)是从一个基类(父类)直接派生定义的，这种继承称为“单继承(single inheritance)”  
 如果一个派生类(子类)是从2个以上基类(父类)直接派生定义的，这种继承称为“多继承(multiple inheritance)” 
+
+```
+//定义个雇员类Employee
+class Employee {
+protected:    //protected声明的保护属性，不能被外界访问，但可以被派生类所继承
+  string  name;
+  string address;
+  double salary;
+public:
+  void set_name(string n) { name = n; }
+  void set_address(string add) {  address=add; }
+  void set_salary(double s) {  salary = s; }
+  string get_name() { return name; }
+  string get_address() { return address; }
+  double get_salary() { return salary; }
+  void out() {
+    std::cout << name << " " << address << " " << salary << "\n";
+  }
+};
+
+//经理类Manager是一个特殊的雇员，他管理其他一定数量的雇员
+//而且Manager可能是不同级别的经理,所以除雇员的一般属性外，还具有一些特定的属性
+//因为Manager类是公开public继承Employee的信息，所以：
+//Employee的除private私有属性外的属性如public公开或protected保护都能被继承下来
+class Manager : public Employee {
+  int level;  //经理的级别
+public:
+  void set_level(int l) { level = l; }
+  int get_level() { return level; }
+
+  //雇员的out函数发生了变化，还需要输出经理的级别信息
+  void out() {
+    std::cout <<level<<" "<< name << " " << address << " " << salary << "\n";
+  }
+};
+
+int main_20() {
+  Employee e;
+  Manager m;
+  e.set_name("Lipin");
+  e.set_address("Zhenjiang");
+  e.set_salary(1500);
+  e.out();
+
+  m.set_name("ZhangWei");
+  m.set_address("Wuxi");
+  m.set_salary(2500);
+  m.set_level(1);
+  m.out();
+  return 0;
+}
+```
 
 ![继承(Inheritance)关系](https://github.com/shdong/shdong/blob/master/c++/inheritance.jpg)
 
