@@ -203,6 +203,7 @@ main()
    system("PAUSE");
 }
 ```
+在该文件中声明了存在一个外部函数write_extern()，可能定义在其他文件中，在该文件中并没有定义这个函数。
 ***second file: file.cpp***
 ```
 #include <iostream>
@@ -213,6 +214,13 @@ void write_extern(void)
    std::cout << "Count is " << count << std::endl;
 }
 ```
+在该文件中定义了main.cpp中的main()函数所需要的write_extern()。声明了在其他文件中可能定义了一个叫做"count"的整型变量。
+
+##运算符(Operators)
+
+运算符是用于对数据进行运算(如算术运算、逻辑运算)的符号。运算符按照其种类可以分为：算术运算符Arithmetric、增量(increment)和减量(decrement)运算符、
+关系(Relational)运算符、逻辑(logical)运算符、位(bitwise)运算符、赋值(Assignment)运算符、  
+以及其他一些运算符,如逗号运算符',',检测内存大小运算符sizeof, 取地址运算符&, 取内容运算符*, 条件运算符?: 。
 
 
 1.  [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
