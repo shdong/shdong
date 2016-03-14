@@ -259,6 +259,21 @@ age在内存的存储样子如下：
 
    | 22 | 25 | 30 | 32 |___|
 
+访问数组中的元素，可以用下标（下标从0开始），如age[0]、age[1]分别表示数组age的第1个、第2个整数。
+如：
+```
+int newArray[10];
+int n = 0;
+
+// Initializing elements of array seperately
+for(n=0; n < sizeof(newArray); n++)
+{
+  newArray[n] = n;
+}
+
+int a = newArray[5]; // Assigning 5th element of array value to integer 'a'.
+```
+
 
 
 ###参考资料(Reference)：
