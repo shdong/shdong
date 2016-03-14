@@ -116,6 +116,25 @@ std::cin是标准名字空间std中的一个变量，表示一个输入对象（
   
 ```
 
+
+**数据类型和变量**
+
+C++中的每个变量(实际就是一块内存)都要说明其数据类型，类型的作用有：决定该类型变量占据多大内存、取值范围、对该类型变量能进行哪些运算。
+
+如：  
+```
+int x;
+```
+说明变量x的数据类型是int型（整型），对它能进行一些整数的运算如加减乘除。
+
+C++的数据类型主要分为内在类型（built-in type, 如 int）和用户定义类型 (user defined type,如 struct student)。
+
+内在类型有：整型(integer)、字符型(character)、浮点型(floating-point)、逻辑型(boolean)、void型。  
+如整型类型有： 
+   ![integer data type](https://www.github.com/c++/integerType.jpg)
+
+了解更多的[内在类型](http://www.w3schools.in/cplusplus/data-types/)。
+
 1.  [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
 
 2. [http://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm](http://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm)
