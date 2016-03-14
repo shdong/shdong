@@ -541,6 +541,36 @@ int main(){
 }
 ```
 
+**间接访问运算符 (->)**
+可以通过一个指向类对象(变量)的指针变量间接访问这个对象的成员(数据成员和函数成员)，如
+```
+#include <iostream>
+class Box
+{
+ public:
+   double length; // Length of a box
+   double breadth; // Breadth of a box
+   double height; // Height of a box
+   double volume(Box *this){
+	  return this->height * this->length * this->breadth;
+   }
+}
+  int main(){
+	Box box;
+	Box *p = & box;
+	p->length = 20.5;
+	p->breadth = 2;
+	p->height = 4.5;
+
+	double vol;
+	vol = p->volume(); 
+    std::cout << vol<<"\n";
+	return 0;
+	
+}
+```
+
+
 ###继承(Inheritance)
 
 C++的一个重要特性是继承(Inheritance)，继承是一种重用和扩展已有类(class)而无需修改它们的机制。
