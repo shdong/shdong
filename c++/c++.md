@@ -377,6 +377,8 @@ int main(){
 
 ##C++的面向对象
 
+###类(class)
+
 在C++,Java这种面向对象编程语言中，数据和函数（对数据的处理过程）被捆绑在一个完整的叫做“对象”的单元中。  
 C++中的类(class)类型是C语言的结构(struct)的扩展，在C语言的结构类型只描述了  
 这种类型的变量具有哪些属性（数据成员），而C++的类类型，则描述了这种类型的对象所具有  
@@ -475,7 +477,87 @@ int main( )
   return 0;
 }
 ```
+再如:
+```
+using namespace std;
 
+class stud 
+{
+    public:
+    char name[30],clas[10];
+    int rol,age;
+    float per;
+
+   void enter() 
+  {
+    cout<<"\n Enter Student Name, Age, Roll number";     cin>>name>>age>>rol;
+    cout<<"\n Enter Student Class and percentage in previous class";     cin>>clas>>per; 
+  }
+
+  void display() 
+  {
+    cout<<"\n Age\tName\tR.No.\tClass\t%ge";
+    cout<<"\n"<<age<<"\t"<<name<<"\t"<<rol<<"\t"<<clas<<"\t"<<per<<"%"; 
+  }
+};
+
+int main()
+{
+    class stud s;
+    s.enter();    //通过类stud的对象s调用类stud的成员函数enter() 输入数据到对象s的数据成员中
+    s.display();
+    cin.get();	//use this to wait for a keypress 
+} 
+```
+
+**this 指针**
+
+C++类的每个成员函数都隐含一个叫做"this"指针，存储调用这个成员函数的对象地址。  
+如上述代码中的enter()和dispaly()函数实际是 enter(stud *this) 和 dispaly(stud *this) 。  
+其中的参数this指向main函数中调用它们的那个对象s（即this指针变量存贮的是s的地址）。
+
+同样的Box代码实际应该是:
+```
+class Box
+{
+ public:
+   double length; // Length of a box
+   double breadth; // Breadth of a box
+   double height; // Height of a box
+   double volume(Box *this){
+	  return this->height * this->length * this->breadth;
+   }
+}
+
+int main(){
+	Box Box1, Box2;
+	//...
+	double vol;
+	vol = Box1.volume(); //实际上是: vol = doubleBox1.volume(&Box1); 
+	vol = Box2.volume(); //实际上是: vol = doubleBox1.volume(&Box2);
+}
+```
+
+###继承(Inheritance)
+
+C++的一个重要特性是继承(Inheritance)，继承是一种重用和扩展已有类(class)而无需修改它们的机制。
+
+通过从已有的类派生出新的类，可以重用已有的代码功能并快速实现新的功能。
+
+被继承的类称为“基类(base class)”或“父类(Parent class)”，从基类派生出的新类称为“派生类(derived class)”或“子类 child class”。从这些子类又可以派生出新的子类，如此，形成一个层次性的继承关系。
+
+如果一个派生类(子类)是从一个基类(父类)直接派生定义的，这种继承称为“单继承(single inheritance)”  
+如果一个派生类(子类)是从2个以上基类(父类)直接派生定义的，这种继承称为“多继承(multiple inheritance)” 
+
+1[继承(Inheritance)关系](https://github.com/shdong/shdong/blob/master/c++/inheritance.jpg)
+
+
+
+###友元(friends)
+
+###运算符重载(overload oprerators)
+
+###模板(template)
 
 ###参考资料(Reference)：
 
@@ -484,3 +566,5 @@ int main( )
 2. [http://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm](http://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm)
 
 3. [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
+
+4. [http://www.learncpp.com/cpp-tutorial/](http://www.learncpp.com/cpp-tutorial/)
