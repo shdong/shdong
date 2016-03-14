@@ -566,7 +566,99 @@ C++的一个重要特性是继承(Inheritance)，继承是一种重用和扩展�
 
 ###友元(friends)
 
-###运算符重载(overload oprerators)
+在C++中，一个函数或一个类可以被声明为另一个函数或类的友元(friends)  
+一个函数如果不是一个类的成员函数，就不能访问这个类的私有数据。然而一个类的友元函数  
+(不是这个类的成员函数)可以访问这个类的私有数据。 同行，一个类A的函数不能访问其他类如类B的  
+私有数据，但如果类A是类B的友元类，则类A的函数就可以访问类B的私有数据。
+
+例如
+```
+/* C++ program to demonstrate the working of friend function.*/
+#include <iostream>
+using namespace std; 
+
+class Distance {
+    private:
+        int meter; 
+    public:
+        Distance(): meter(0){ }
+        friend int func(Distance); //类Distance将外部函数fun视为其友元
+};
+
+int func(Distance d){
+    //function definition
+    d.meter=10; // 不是类Distance的函数func可以访问类的私有数据
+    return d.meter; 
+}
+
+int main(){ Distance D;
+    cout<<"Distace: "<< func(D);
+    system("pause"); 
+    return 0;
+}
+```
+
+
+###函数重载，运算符重载(function overloading, operator overloading)
+
+C语言不能有两个同名函数，而C++则允许在一个名字空间里定义多个同名的函数，
+只要它们的参数列表不一样，这种行为称为*函数重载(function overloading)*。
+
+例如
+```
+int add(int x, int y){ return x+y; }
+double add(double x, double y){ return x+y; }
+struct Vector2{
+	double x,y;
+	Vector2(double x0,double y0) :x(x0),y(y0) { }
+};
+dVector2 add(Vector2 x, Vector2 y){
+   Vector2 z; z.x = x.x+y.x; z.y = x.y+y.y; 
+  return z; 
+}
+int main(){
+	Vector2 v1(2.5, 3.5),v2(-1.2, 7.6);
+	Vector2 v = add(v1,v2);
+	int a = 3,b=4;
+	int c = add(a,b);
+	return 0;
+}
+```
+
+```
+#include <iostream>
+using namespace std;
+ 
+class printData 
+{
+   public:
+      void print(int i) {
+        cout << "Printing int: " << i << endl;
+      }
+
+      void print(double  f) {
+        cout << "Printing float: " << f << endl;
+      }
+
+      void print(char* c) {
+        cout << "Printing character: " << c << endl;
+      }
+};
+
+int main(void)
+{
+   printData pd;
+ 
+   // Call print to print integer
+   pd.print(5);
+   // Call print to print float
+   pd.print(500.263);
+   // Call print to print character
+   pd.print("Hello C++");
+ 
+   return 0;
+}
+```
 
 ###模板(template)
 
