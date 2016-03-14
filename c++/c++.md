@@ -52,7 +52,7 @@ int main() {
 }
 ```
 
-C++增加了一个新的单行注释，即从“//”开头的这一行后面的都是程序注释而不是代码。
+C++增加了一个新的**单行注释**，即从“//”开头的这一行后面的都是程序注释而不是代码。
 
 C++提供了实现各种输入输出功能的各种类，成为“输入输出流库”，它将输入输出看成从或向一个对象流动的数据流。如<iostream>就是一个输入输出库的头文件，其中包含了各种输入输出相关的类的定义。
 
@@ -64,6 +64,28 @@ std::cin是标准名字空间std中的一个变量，表示一个输入对象（
 
 因为表达式"std::cin >> x"的结果仍然是"std::cin "，因此输入流运算符">>"可以接连使用。如"std::cin >> x >> y"相当于2次具体输入"std::cin >> x"和"std::cin >> x"。
 
+**C++安装**
+
+  为了将C++代码编译(Compile)成可执行程序，需要在你的系统(system)上安装C++编译器（Compiler）。
+
+  - windows系统上可以安装[Visual Studio(VS)](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx)、[CodeBlocks](http://www.codeblocks.org/downloads)、[Dev-C++](https://sourceforge.net/projects/orwelldevcpp/)，[MimGW](http://www.mingw.org/)等集成开发环境，集成开发环境除了编译器，还有编辑器（用于编写代码）、连接器（用于将编译器生成的目标文件连接成一个完整的可执行程序）、调试器(Debuger，用于调试程序的错误等)等。
+
+ - Unix/Linux上一般都安装了C++编译器gcc,可以用下列命令检查是否安装了gcc:   
+ '''gcc-v'''
+
+ - Mac上有[XCode](https://developer.apple.com/technologies/tools/)集成开发环境
+
+ **C++程序结构**
+
+    一个程序通常包含下列一些：  
+    - 文档  
+    - 预处理语句  
+    - 全局声明  
+    - main函数
+       - 局部变量  
+       - 程序语句和表达式  
+    - 用户定义函数
+    - 用户定义类型，如类类型（struct，class,enum) 
 
 
 1.  [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
