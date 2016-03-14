@@ -238,7 +238,7 @@ C/C++通过条件语句和循环语句控制程序的执行过程。
 
 ##数组和字符串
 
-**数组**
+###数组
 
 语法：
 ```
@@ -274,7 +274,7 @@ for(n=0; n < sizeof(newArray); n++)
 int a = newArray[5]; // Assigning 5th element of array value to integer 'a'.
 ```
 
-**字符串 String**
+###字符串 String
 
 C++中的C风格的字符串是结尾带有结束字符'\0'的字符数组。如：
 ```
