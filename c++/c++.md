@@ -236,6 +236,30 @@ C/C++通过条件语句和循环语句控制程序的执行过程。
   - [else if语句(lse if statements)](http://www.w3schools.in/cplusplus/decision-making/else-if/)
   - [switch语句(switch statements)](http://www.w3schools.in/cplusplus/decision-making/switch/)
 
+##数组和字符串
+
+**数组**
+
+语法：
+```
+  类型 数组名[数组大小]; 
+```
+如：
+```
+  double salary[1500];
+```
+定义了一个数据元素类型是double的大小为1500的数组。
+
+数组可以在定义时初始化，如：
+```
+ int age[5] = {22,25,30,32};  //只初始化了前面4个元素，最后一个元素没有初始化
+ float scores[] = {60.5, 30.1, 78.3,30.4, 77.3, 85}; //数组的大小由{}里的元素个数决定
+```
+age在内存的存储样子如下：
+
+   | 22 |,25 | 30 | 32 |   |
+
+
 
 ###参考资料(Reference)：
 
