@@ -228,9 +228,19 @@ void write_extern(void)
 C/C++程序中定义变量、函数或类型时，不用使用那些被用作C++关键字的标识符(identifier)。这些被C++ 语言保留的标识符称为关键字。如[C++ Keywords List](http://www.w3schools.in/cplusplus/keywords/)
 
 
+##控制结构(Control structures)
+C/C++通过条件语句和循环语句控制程序的执行过程。   
+条件语句根据条件是否满足，执行相应的程序代码(程序块) ，主要有if 系列和switch语句。即：
+  - [if语句(if statements)](http://www.w3schools.in/cplusplus/decision-making/if/)
+  - [if-else语句(if-else statements)](http://www.w3schools.in/cplusplus/decision-making/if-else/)
+  - [else if语句(lse if statements)](http://www.w3schools.in/cplusplus/decision-making/else-if/)
+  - [switch语句(switch statements)](http://www.w3schools.in/cplusplus/decision-making/switch/)
 
-1.  [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
+
+###参考资料(Reference)：
+
+1. [http://www.w3schools.in/cplusplus/intro/](http://www.w3schools.in/cplusplus/intro/) 
 
 2. [http://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm](http://www.tutorialspoint.com/cplusplus/cpp_quick_guide.htm)
 
-3. [http://www.w3schools.in/cplusplus/intro/](http://www.w3schools.in/cplusplus/intro/)
+3. [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
