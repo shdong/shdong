@@ -274,6 +274,52 @@ for(n=0; n < sizeof(newArray); n++)
 int a = newArray[5]; // Assigning 5th element of array value to integer 'a'.
 ```
 
+**字符串 String**
+
+C++中的C风格的字符串是结尾带有结束字符'\0'的字符数组。如：
+```
+  char str[5] = {'a','b','c','d','e'}; //是5个字符的数组
+  char str2[5] = {'a','b','c','d','\0'};  //表示一个有4个字符的字符串"abcd"
+  char *str3 = "hello"; // "hello"是一个字符串常量，用它给一个char型指针变量strs赋值，  
+                        //就是将它的起始地址给str3赋值，因此str3里存储的是"hello"的
+                        //第一个字符'h'的地址         
+
+```
+针对这种C风格的字符串的字符串操作函数有：查询长度(strlen)、字符串拷贝(strcpy)、  
+字符串拼接(strcat)、 字符串比较(strcmp)、字符查找(strchr)、 字符串查找(strchr)等。  
+例子可参考[C风格字符串](http://www.tutorialspoint.com/cplusplus/cpp_strings.htm)
+
+
+标准C++库提供了一个叫做"string"的类(class)支持字符串的许多基本操作。如:
+```
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main ()
+{
+   string str1 = "Hello";
+   string str2 = "World";
+   string str3;
+   int  len ;
+
+   // copy str1 into str3
+   str3 = str1;
+   cout << "str3 : " << str3 << endl;
+
+   // concatenates str1 and str2
+   str3 = str1 + str2;
+   cout << "str1 + str2 : " << str3 << endl;
+
+   // total lenghth of str3 after concatenation
+   len = str3.size();
+   cout << "str3.size() :  " << len << endl;
+
+   return 0;
+}
+```
+
 ##指针(Pointers)
 
 指针变量定义语法：  
