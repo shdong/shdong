@@ -1,5 +1,5 @@
 
-**C++ 简介**  
+##C++ 简介  
 C++是C语言的扩展(超集)，C语言编写的程序也是合法的C++程序，C++语言除包含“过程式”(即函数)C语言的特征外，还增加了“面向对象语言”的特征。即程序可以看成许多对象通过发送、接受消息完成程序的功能。具有相同属性（即数据成员）和功能（即函数成员）的对象用一个“类”(class)来刻画它们。
   
 例如一个游戏程序有”精灵“、”怪物“、”子弹“、”事件“、”事件监听器“等不同类的对象。比如一个”触摸监听器“对象检测到一个”触摸“事件对象，它可向某个”精灵“对象sprite发送一个带有该触摸对象信息touch的触摸消息 "OnTouchBegin"。sprite对象就执行自己的“OnTouchBegin”过程： sprite.OnTouchBegin(touch);
@@ -40,7 +40,7 @@ int main(){
 ```
 
 
-**C++安装**
+##C++安装
 
   为了将C++代码编译(Compile)成可执行程序，需要在你的系统(system)上安装C++编译器（Compiler）。
 
@@ -100,7 +100,7 @@ std::cin是标准名字空间std中的一个变量，表示一个输入对象（
 因为表达式"std::cin >> x"的结果仍然是"std::cin "，因此输入流运算符">>"可以接连使用。如"std::cin >> x >> y"相当于2次具体输入"std::cin >> x"和"std::cin >> x"。
 
 
-**名字空间namespace**
+##名字空间namespace
 
 如前所述，名字空间是为了防止代码中的名字冲突（同一个名字表示不同的东西）。如"std::cin"表示了名字空间std中的一个变量（对象）cin。  如果你在一个代码前面声明了“using namespace std”，那么以后就不需要在一个名字如cin前加上名字空间的限定词"std::"，可以直接用cin，如：  
 ```
@@ -117,15 +117,24 @@ std::cin是标准名字空间std中的一个变量，表示一个输入对象（
 ```
 
 
-**数据类型和变量**
+##数据类型和变量
 
 C++中的每个变量(实际就是一块内存)都要说明其数据类型，类型的作用有：决定该类型变量占据多大内存、取值范围、对该类型变量能进行哪些运算。
+
+定义变量的格式是：  
+类型名  变量名;
+
+类型名  变量1名, 变量2名, 变量3名, 变量4名; 
+
+每个变量实际就是一块内存。它存储在计算机的某个内存地址处，占据一定的内存大小。
 
 如：  
 ```
 int x;
+char c,d;
 ```
-说明变量x的数据类型是int型（整型），对它能进行一些整数的运算如加减乘除。
+
+定义了一个数据类型是int（整型）的变量x，对它能进行一些整数的运算如加减乘除。定义了类型为char（字符类型）的两个变量叫做c和d。
 
 C++的数据类型主要分为内在类型（built-in type, 如 int）和用户定义类型 (user defined type,如 struct student)。
 
@@ -135,6 +144,76 @@ C++的数据类型主要分为内在类型（built-in type, 如 int）和用户�
    ![integer data type](https://github.com/shdong/shdong/blob/master/c%2B%2B/integerType.jpg)
 
 了解更多的[内在类型](http://www.w3schools.in/cplusplus/data-types/)。
+
+除变量外，程序的数据还包括常量（constants也叫做文字量literals），它们是永远不会改变了的量。常量的类型可以是任何类型，习惯上用大写字母命名它们。如  
+```
+const double PI =  3.14159265; 
+```
+定义了一个叫做PI的double类型的常量。
+
+##存储类(storage class )
+
+这里的class不是C++中的类class，而是类别的意思。存储类说明了变量量的生命周期和z作用域(可见性)  
+C++的存储类有下列几种：  
+  -Automatic
+  -External
+  -Static
+  -Register
+
+  ***自动存储类 Automatic(auto) storage class***
+
+  定义在一个函数体里的变量称为“自动变量 (auto variable)”。也成为局部变量(local variable)。可以用auto来定义：  
+   ```
+    auto a,b,c = 100;
+  ``` 
+定义了整型变量a,b,c。用auto定义的变量其数据类型可以从初始化表达式如"c=100"中自动推断出来。 
+等价于
+  ```
+  int a,b,c = 100;
+  ```
+***外部存储类 External storage class***
+
+定义在函数外部的变量叫做“外部变量(External variable)”。外部变量一旦定义，就可以用在后续的任何程序代码中。
+```
+#include <iostream>
+int count;
+void f(){
+	count = count+2;
+}
+int main(){
+	count = 0 ;
+	f();
+	std::cout << count;
+}
+```
+
+外部修饰符(External modifiers)通常用于说明（声明）一个被程序多个文件使用的局部变量。仅仅是说明存在这样的一个变量而不是定义这个变量，变量的定义可能存在在其他某个文件中。
+
+***first file: main.cpp***
+```
+#include <iostream>
+#include "file.cpp"
+int count ;
+extern void write_extern();
+ 
+main()
+{
+   count = 5;
+   write_extern();
+   system("PAUSE");
+}
+```
+***second file: file.cpp***
+```
+#include <iostream>
+extern int count;
+ 
+void write_extern(void)
+{
+   std::cout << "Count is " << count << std::endl;
+}
+```
+
 
 1.  [C++ tutorial for C users](http://www.4p8.com/eric.brasseur/cppcen.html)
 
