@@ -687,7 +687,7 @@ int main(){
 在该函数中访问v1.x即v1的私有数据x是非法的。解决这个问题的方式有两种
 
   - 方法一：将operator+定义为Vector2的成员函数  
-  ···
+  ```
   struct Vector2{
   private:
 	double x,y;
@@ -703,7 +703,7 @@ int main(){
 	   Vector2 v = v1+v2;  //实际上调用的是: Vector2 v = v1.operator+(v2);
 	   return 0;
    }
-  ··· 
+  ```
   - 方法二： 在类Vector2中将外部函数operator声明为其友元。
   ```
   struct Vector2{
