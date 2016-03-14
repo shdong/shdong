@@ -549,7 +549,7 @@ C++的一个重要特性是继承(Inheritance)，继承是一种重用和扩展�
 如果一个派生类(子类)是从一个基类(父类)直接派生定义的，这种继承称为“单继承(single inheritance)”  
 如果一个派生类(子类)是从2个以上基类(父类)直接派生定义的，这种继承称为“多继承(multiple inheritance)” 
 
-1[继承(Inheritance)关系](https://github.com/shdong/shdong/blob/master/c++/inheritance.jpg)
+![继承(Inheritance)关系](https://github.com/shdong/shdong/blob/master/c++/inheritance.jpg)
 
 
 
