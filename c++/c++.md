@@ -131,7 +131,7 @@ C++的数据类型主要分为内在类型（built-in type, 如 int）和用户�
 
 内在类型有：整型(integer)、字符型(character)、浮点型(floating-point)、逻辑型(boolean)、void型。  
 如整型类型有： 
-   ![integer data type](https://www.github.com/c++/integerType.jpg)
+   ![integer data type](https://github.com/shdong/shdong/blob/master/c%2B%2B/integerType.jpg)
 
 了解更多的[内在类型](http://www.w3schools.in/cplusplus/data-types/)。
 
