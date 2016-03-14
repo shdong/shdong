@@ -375,6 +375,108 @@ int main(){
 }
 ```
 
+##C++的面向对象
+
+在C++,Java这种面向对象编程语言中，数据和函数（对数据的处理过程）被捆绑在一个完整的叫做“对象”的单元中。  
+C++中的类(class)类型是C语言的结构(struct)的扩展，在C语言的结构类型只描述了  
+这种类型的变量具有哪些属性（数据成员），而C++的类类型，则描述了这种类型的对象所具有  
+的属性（数据成员）和行为（函数）。
+
+如同C语言的结构（struct）不是一个变量(在C++中变量也称为"对象"")，C++中的类(class)也不是一个变量(对象)，而是刻画同类型所有对象共同具有的特性( 属性和行为)。
+
+**类是什么(What is class)**
+
+  - 类(class)是一个类似于C语言的结构(struct)的抽象数据类型
+  - 类刻画了对象的属性，以及可以做用于对象的操作(函数)  
+    即类包含：数据成员（也称成员数据） 、 函数成员（也称成员函数）
+
+**类的定义(Definition of a class)**
+
+语法：
+```
+Class class_name
+{
+    Data Members;
+    Methods;
+}
+```
+例如：
+```
+class A
+{
+    public:
+    double length; // Length of a box
+    double breadth; // Breadth of a box
+    double height; // Height of a box 
+}
+```
+  - *privated,protected,public*是可见性标记  
+  - 声明为*privated*的成员只能被该类的成员函数访问，外部（其他类或全局函数）   
+    不能访问这些*private*成员
+  - 声明为*privated*的成员能被类(class)外的函数访问  
+  - 在C++中，数据可以通过被声明为*private*对外界隐藏起来。称为“信息隐蔽”。  
+
+**类成员(class members)**
+
+类中的成员有**数据(data)**和**函数(function)**成员。
+```
+Class A
+{
+    int i;
+    int j;
+    void f (int, int);
+    int g(); 
+    int i; //错，不能在类里定义两个同名的成员i
+}
+```
+*f*和*g*是类A的成员函数，它们定义了类A的对象具有的行为。
+
+**成员访问运算符 (.)**
+
+类似于C语言，成员访问运算符(.)可用于访问类对象的成员。如
+```
+#include <iostream> 
+using namespace std;
+
+class Box
+{
+ public:
+   double length; // Length of a box
+   double breadth; // Breadth of a box
+   double height; // Height of a box
+   double volume(){
+	  return height * length * breadth;
+   }
+}
+
+int main( )
+{
+  Box Box1; // Declare Box1 of type Box
+  Box Box2; // Declare Box2 of type Box
+  double vol = 0.0; // Store the volume of a box here
+
+  // box 1 specification
+  Box1.height = 4.0; 
+  Box1.length = 6.0; 
+  Box1.breadth = 3.0;
+
+  // box 2 specification
+  Box2.height = 10.0;
+  Box2.length = 12.0;
+  Box2.breadth = 12.0;
+
+  // volume of box 1
+  vol = Box1.height * Box1.length * Box1.breadth;
+  cout << "Volume of Box1 : " << vol << endl; 
+
+  //  volume of box 2
+  vol = Box2.volume()
+  cout << "Volume of Box2 : " << vol << endl;
+  return 0;
+}
+```
+
+
 ###参考资料(Reference)：
 
 1. [http://www.w3schools.in/cplusplus/intro/](http://www.w3schools.in/cplusplus/intro/) 
