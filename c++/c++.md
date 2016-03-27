@@ -787,16 +787,26 @@ C语言不能有两个同名函数，而C++则允许在一个名字空间里定�
 
 例如
 ```
-int add(int x, int y){ return x+y; }
-double add(double x, double y){ return x+y; }
+int add(int x, int y){ return x+y; }  
+
+double add(double x, double y){ return x+y; }  
+
 struct Vector2{
-	double x,y;
-	Vector2(double x0,double y0) :x(x0),y(y0) { }
+    double x,y;
+     //Vector2(double x0,double y0):x(x0),y(y0){}
+    Vector2(double x0,double y0)  { 
+       x = x0;
+       y = y0;
+   }
 };
-dVector2 add(Vector2 x, Vector2 y){
-   Vector2 z; z.x = x.x+y.x; z.y = x.y+y.y; 
-  return z; 
+
+Vector2 add(Vector2 x, Vector2 y){
+   Vector2 z; 
+   z.x = x.x+y.x; 
+   z.y = x.y+y.y; 
+   return z; 
 }
+
 int main(){
 	Vector2 v1(2.5, 3.5),v2(-1.2, 7.6);
 	Vector2 v = add(v1,v2);
@@ -904,6 +914,57 @@ int main(){
    ```
 
 
+```
+-------------下标运算符函数operator[]------------
+#include <iostream>
+typedef double ElemType;
+
+class SqList {
+  ElemType *data;
+  int length;
+  int capacity;
+public:
+  SqList(int capacity = 10); //InitSqList();
+  bool push_back(ElemType e) {
+    if (length >= capacity) return false;
+    data[length] = e;
+    length++;
+  }
+  int size() { return length; }
+
+  ElemType& operator[](int i) {
+    return data[i];
+  }
+};
+
+SqList::SqList(int capacity) {
+  this->data = new ElemType[capacity];
+  this->capacity = capacity;
+  this->length = 0;
+}
+
+int main() {
+  SqList L;
+  ElemType e;
+  e = 10.5;
+  L.push_back(e);
+  e = 20.5;
+  L.push_back(e);
+  e = 30.5;
+  L.push_back(e);
+  std::cout << L.size() << "\n";
+
+  L[1] = 200.5;
+  std::cout << L[1] << "\n";
+
+
+  for (int i = 0; i < L.size();i++)
+    std::cout << L[i] << "\n";
+
+  return 0;
+}
+```
+
 ###模板(template)
 
 **函数模板**
@@ -976,7 +1037,7 @@ C++类模板（或称模板类）则可以定义一个泛型的向量类。如�
     	Vector2<int> u(3, 5) ,u2(4, 6);
     	Vector2<float> v(3.5 ,5.5)，v2(2.5, 10.5);	  //
         Vector2<int> u3 = u + u2;   // u. operator(u2);
-        Vector2<int> v3 = v + v2;   // v. operator(v2);
+        Vector2<float> v3 = v + v2;   // v. operator(v2);
 	   return 0;
    }
  ```
