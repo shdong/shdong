@@ -6,7 +6,7 @@ C++是C语言的扩展(超集)，C语言编写的程序也是合法的C++程序�
 
 面向对象程序设计的关键要素是“类和对象”，类即数据类型，即类似于C语言中的int类型，而对象就是具体的变量，用以表示实际的数据。类则是用于刻画同类对象的共同特性有哪些。 类类似于C语言的结构，实际上C语言的结构在C++中就称之为"类"。因此类表示了某种抽象概念，描述了该类对象具有哪些数据(成员变量)和功能（成员函数）。如在游戏中定义一个怪物monster类,具有比如名字、位置、颜色、纹理等信息，还具有比如 “移动”、“死亡”等功能。
 
-```
+```c++
 struct student{
 	int id; 
 	double score;
@@ -27,7 +27,7 @@ struct student{
 
 上述代码就定义了一个叫做“student”的类型，这种类的对象具有类型分别为int和double的数据成员id和score。 此外，这种类的对象还具有 查询 (如get_id) 和 修改 (如set_id)的函数成员，用于获取或修改其数据成员id和score。
 
-```
+```c++
 int main(){
 	student stu;
 
@@ -66,7 +66,7 @@ int main(){
 
 **输入输出**
 
-```
+```c++
 /*
    这是程序的文档，用以说明这个程序具有哪些功能  
    比如这个程序从键盘输入两个整数，然后再向窗口中  
@@ -103,8 +103,7 @@ std::cin是标准名字空间std中的一个变量，表示一个输入对象（
 ##名字空间namespace
 
 如前所述，名字空间是为了防止代码中的名字冲突（同一个名字表示不同的东西）。如"std::cin"表示了名字空间std中的一个变量（对象）cin。  如果你在一个代码前面声明了“using namespace std”，那么以后就不需要在一个名字如cin前加上名字空间的限定词"std::"，可以直接用cin，如：  
-```
-
+```c++
    #include <iostream>
    using namespace std;
    int main(){
@@ -130,7 +129,7 @@ C++中的每个变量(实际就是一块内存)都要说明其数据类型，类
 每个变量实际就是一块内存。它存储在计算机的某个内存地址处，占据一定的内存大小。
 
 如：  
-```
+```c++
 int x;
 char c,d;
 ```
@@ -147,7 +146,7 @@ C++的数据类型主要分为内在类型（built-in type, 如 int）和用户�
 了解更多的[内在类型](http://www.w3schools.in/cplusplus/data-types/)。
 
 除变量外，程序的数据还包括常量（constants也叫做文字量literals），它们是永远不会改变了的量。常量的类型可以是任何类型，习惯上用大写字母命名它们。如  
-```
+```c++
 const double PI =  3.14159265; 
 ```
 定义了一个叫做PI的double类型的常量。
@@ -170,13 +169,13 @@ C++的存储类有下列几种：
   ``` 
 定义了整型变量a,b,c。用auto定义的变量其数据类型可以从初始化表达式如"c=100"中自动推断出来。 
 等价于
-  ```
+```c++
   int a,b,c = 100;
-  ```
+```
 ***外部存储类 External storage class***
 
 定义在函数外部的变量叫做“外部变量(External variable)”。外部变量一旦定义，就可以用在后续的任何程序代码中。
-```
+```c++
 #include <iostream>
 int count;
 void f(){
@@ -192,7 +191,7 @@ int main(){
 外部修饰符(External modifiers)通常用于说明（声明）一个被程序多个文件使用的局部变量。仅仅是说明存在这样的一个变量而不是定义这个变量，变量的定义可能存在在其他某个文件中。
 
 ***first file: main.cpp***
-```
+```c++
 #include <iostream>
 #include "file.cpp"
 int count ;
@@ -207,7 +206,7 @@ main()
 ```
 在该文件中声明了存在一个外部函数write_extern()，可能定义在其他文件中，在该文件中并没有定义这个函数。
 ***second file: file.cpp***
-```
+```c++
 #include <iostream>
 extern int count;
  
@@ -244,17 +243,17 @@ C/C++通过条件语句和循环语句控制程序的执行过程。
 ###数组
 
 语法：
-```
+```c++
   类型 数组名[数组大小]; 
 ```
 如：
-```
+```c++
   double salary[1500];
 ```
 定义了一个数据元素类型是double的大小为1500的数组。
 
 数组可以在定义时初始化，如：
-```
+```c++
  int age[5] = {22,25,30,32};  //只初始化了前面4个元素，最后一个元素没有初始化
  float scores[] = {60.5, 30.1, 78.3,30.4, 77.3, 85}; //数组的大小由{}里的元素个数决定
 ```
@@ -264,7 +263,7 @@ age在内存的存储样子如下：
 
 访问数组中的元素，可以用下标（下标从0开始），如age[0]、age[1]分别表示数组age的第1个、第2个整数。
 如：
-```
+```c++
 int newArray[10];
 int n = 0;
 
@@ -280,7 +279,7 @@ int a = newArray[5]; // Assigning 5th element of array value to integer 'a'.
 ###字符串 String
 
 C++中的C风格的字符串是结尾带有结束字符'\0'的字符数组。如：
-```
+```c++
   char str[5] = {'a','b','c','d','e'}; //是5个字符的数组
   char str2[5] = {'a','b','c','d','\0'};  //表示一个有4个字符的字符串"abcd"
   char *str3 = "hello"; // "hello"是一个字符串常量，用它给一个char型指针变量strs赋值，  
@@ -294,7 +293,7 @@ C++中的C风格的字符串是结尾带有结束字符'\0'的字符数组。如
 
 
 标准C++库提供了一个叫做"string"的类(class)支持字符串的许多基本操作。如:
-```
+```c++
 #include <iostream>
 #include <string>
 
@@ -329,12 +328,12 @@ int main ()
 类型 *变量名；
 
 如：
-```
+```c++
 int  *height;
 char  *age;
 ```
 定义了指针变量height和age,height用于存储int型变量的地址。age用于存储char型变量的地址。  
-```
+```c++
 #include<iostream>
 using namespace std;
 
@@ -360,7 +359,7 @@ int main ()
 ```
 
 数组名是指向数组第一个元素的指针，可以通过 “指针+一个整数”来指向相应的数组元素。例如：
-```
+```c++
 #include <iostream>
 int main(){
 	int a[5] = {10,20,30,40,50};
@@ -398,7 +397,7 @@ C++中的类(class)类型是C语言的结构(struct)的扩展，在C语言的结
 **类的定义(Definition of a class)**
 
 语法：
-```
+```c++
 Class class_name
 {
     Data Members;
@@ -406,7 +405,7 @@ Class class_name
 }
 ```
 例如：
-```
+```c++
 class A
 {
     public:
@@ -424,7 +423,7 @@ class A
 **类成员(class members)**
 
 类中的成员有**数据(data)**和**函数(function)**成员。
-```
+```c++
 Class A
 {
     int i;
@@ -439,7 +438,7 @@ Class A
 **成员访问运算符 (.)**
 
 类似于C语言，成员访问运算符(.)可用于访问类对象的成员。如
-```
+```c++
 #include <iostream> 
 using namespace std;
 
@@ -481,7 +480,7 @@ int main( )
 }
 ```
 再如:
-```
+```c++
 using namespace std;
 
 class stud 
@@ -520,7 +519,7 @@ C++类的每个成员函数都隐含一个叫做"this"指针，存储调用这�
 其中的参数this指向main函数中调用它们的那个对象s（即this指针变量存贮的是s的地址）。
 
 同样的Box代码实际应该是:
-```
+```c++
 class Box
 {
  public:
@@ -543,7 +542,7 @@ int main(){
 
 **间接访问运算符 (->)**
 可以通过一个指向类对象(变量)的指针变量间接访问这个对象的成员(数据成员和函数成员)，如
-```
+```c++
 #include <iostream>
 class Box
 {
@@ -571,7 +570,7 @@ class Box
 ```
 
 **构造函数(Constructors)、析构函数（Deconstructors）**
-```
+```c++
 //1.如果类的所有成员是公开的，我们在定义该变量时，可以用初始化成员列表（initialization list）
 // 或均匀初始化（uniform initialization (in C++11):）来进行初始化
 class Foo
@@ -590,12 +589,11 @@ int main()
 }
 ```
 
-```
 //如果类存在私有的数据成员变量，则不能用上述方法初始化类对象(类变量)，
 //这就需要叫做“构造函数”（constructors）的特殊成员函数来完成对类对象的初始化。
 //与类名相同的成员函数叫做“构造函数”，一个类可以有多个不同的构造函数，只要它们的参数列表是不同的
 //2. “默认构造函数” （Default constructors）：不带参数或参数都有默认值的构造函数
-
+```c++
 #include <iostream>
 
 class Fraction
@@ -626,7 +624,7 @@ int main()
 
 多个构造函数
 
-```
+```c++
 #include <cassert>
 class Fraction2
 {
@@ -676,7 +674,7 @@ C++的一个重要特性是继承(Inheritance)，继承是一种重用和扩展�
 如果一个派生类(子类)是从一个基类(父类)直接派生定义的，这种继承称为“单继承(single inheritance)”  
 如果一个派生类(子类)是从2个以上基类(父类)直接派生定义的，这种继承称为“多继承(multiple inheritance)” 
 
-```
+```c++
 //定义个雇员类Employee
 class Employee {
 protected:    //protected声明的保护属性，不能被外界访问，但可以被派生类所继承
@@ -751,7 +749,7 @@ int main_20() {
 私有数据，但如果类A是类B的友元类，则类A的函数就可以访问类B的私有数据。
 
 例如
-```
+```c++
 /* C++ program to demonstrate the working of friend function.*/
 #include <iostream>
 using namespace std; 
@@ -786,7 +784,7 @@ C语言不能有两个同名函数，而C++则允许在一个名字空间里定�
 只要它们的参数列表不一样，这种行为称为*函数重载(function overloading)*。
 
 例如
-```
+```c++
 int add(int x, int y){ return x+y; }  
 
 double add(double x, double y){ return x+y; }  
@@ -816,7 +814,7 @@ int main(){
 }
 ```
 
-```
+```c++
 #include <iostream>
 using namespace std;
  
@@ -856,7 +854,7 @@ int main(void)
 为了能用'+'对两个Vector2类的对象进行加法运算，我们需要对类Vector2重载“加法运算符”，  
 即告诉加法运算符'+'，如果对它们进行相加。加法运算符的完整函数名是"operator+"，  
 因此，可以如下重新定义参数列表是两个Vector2对象的"operator+"函数。
-```
+```c++
 struct Vector2{
 	double x,y;
 	Vector2(double x0,double y0) :x(x0),y(y0) { }
@@ -876,7 +874,7 @@ int main(){
 在该函数中访问v1.x即v1的私有数据x是非法的。解决这个问题的方式有两种
 
   - 方法一：将operator+定义为Vector2的成员函数  
-  ```
+```c++
   struct Vector2{
   private:
 	double x,y;
@@ -894,7 +892,7 @@ int main(){
    }
   ```
   - 方法二： 在类Vector2中将外部函数operator声明为其友元。
-  ```
+```c++
   struct Vector2{
   private:
 	double x,y;
@@ -911,10 +909,10 @@ int main(){
 	   Vector2 v = v1+v2;  //实际上调用的是: Vector2 v = v1.operator+(v2);
 	   return 0;
    }
-   ```
-
-
 ```
+
+
+```c++
 -------------下标运算符函数operator[]------------
 #include <iostream>
 typedef double ElemType;
@@ -970,7 +968,7 @@ int main() {
 **函数模板**
 
 假如要求针对不同类型的两个变量的最小值函数，我们需要对每种参数类型定义一个对应的函数，如
-```
+```c++
   int min(int a ,int b){
      if(a < b) return a;
      else return b;
@@ -989,7 +987,7 @@ int main() {
  比较麻烦，更主要的问题是这样的函数不能用于将来可能出现的新的类型参数。
 
  解决这个问题的方法是定义一个模板函数，将其中的参数和返回值用所谓的“模板参数”进行参数化。
- ```
+```c++
  template< class Type>
  Type min(Type a ,Type b){
      if(a < b) return a;
@@ -1019,7 +1017,7 @@ int main() {
 要表示int类型或float类型的平面向量，需要重新定义不同名字的向量类。如  
 Vector2i ,Vector2f。对于不同数值类型都要定义这样一个类，很不方便。
 C++类模板（或称模板类）则可以定义一个泛型的向量类。如下：
- ```
+```c++
  template < class Type>
  class Vector2{
    private:
@@ -1049,7 +1047,7 @@ C++类模板（或称模板类）则可以定义一个泛型的向量类。如�
 C++的标准模板库(STL)中定义了许多实用的类模板和函数模板(算法)。
 
 例如向量vector类模板表示一个顺序表（数组）。
-```
+```c++
 #include <iostream>
 #include <vector>
 using namespace std;
