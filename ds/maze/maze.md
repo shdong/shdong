@@ -188,11 +188,15 @@ typedef struct Position_
 {
       int x;
       int y;
-      int direction; //0表示其四周为探索过，1,2,3,4分别表示其东南西北已经探索过。
+      int direction; //0表示其四周未探索过，1,2,3,4分别表示其东南西北已经探索过。
 } Position;
 ```
 为此，我们需要一个数据元素类型是Position的堆栈，其代码如下：
 ```
+#include <malloc.h>
+#define STACK_INIT_SIZE 100
+#define STACKINCREMENT 10
+
 typedef Position  ElemType;
 typedef struct {
 	ElemType *base;
@@ -200,47 +204,48 @@ typedef struct {
 	int       stacksize;
 } SqStack;
 
-int InitStack(SqStack &S) {	
+bool InitStack(SqStack &S) {
 	S.base = (ElemType*)malloc(STACK_INIT_SIZE * sizeof(ElemType)); //分配空间
-	if (!S.base)	return NoMemory;
+	if (!S.base)	return false;
 	S.top = S.base;           //设置指针
 	S.stacksize = STACK_INIT_SIZE;  //设置大小
-	return OK;
+	return true;
 }
 
-int Push(SqStack &S, ElemType e) {	
+bool Push(SqStack &S, ElemType e) {
 	if (S.top - S.base >= S.stacksize) {//若空间不够，重新分配
 		S.base = (ElemType *)realloc
 			(S.base, (S.stacksize +
 				STACKINCREMENT)*
 				sizeof(ElemType));
-		if (!S.base) return NoMemory;
+		if (!S.base) return false;
 		S.top = S.base + S.stacksize;
 		S.stacksize += STACKINCREMENT;
 	}
 	*S.top++ = e; //插入数据
-	return OK;
+	return true;
 }
 
-int Pop(SqStack &S, ElemType &e)
+bool Pop(SqStack &S, ElemType &e)
 {
 	if (S.top == S.base)  //空栈
-		return ERROR;
+		return false;
 	e = *--S.top;       //出栈
-	return OK;
+	return true;
 }
 
 bool Top(SqStack &S, ElemType &e)
 {
 	if (S.top == S.base)  //空栈
 		return false;
-	e = *(S.top-1);       //出栈
+	e = *(S.top - 1);       //出栈
 	return true;
 }
 
 bool IsEmpty(SqStack S) {
-	return S.top==S.base;
+	return S.top == S.base;
 }
+//---------------Stack end----------------------
 ```
 **"前进到栈顶位置的下一个可通位置"**
 
