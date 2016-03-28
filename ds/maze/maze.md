@@ -2,7 +2,7 @@
 不同迷宫问题，从当前的位置可以有不一样的下一步探索方向（如东南西北4个方向，有的问题也可能再加上对角线四个方向如东南、西南、西北、东北）。
 
 程序中通常可以用一个二维数据表示迷宫，如：
-```
+```c++
 int maze[5][5] = {
 	0, 1, 0, 0, 0,
 	0, 1, 0, 1, 0,
@@ -14,7 +14,7 @@ int maze[5][5] = {
 其中的1表示墙壁，0表示可以走的位置。通常约定每个位置的探索方向有哪些，比如“只能横着走或竖着走，不能斜着走”，即只有最多4个方向可前进。
 
 由于边缘和角点位置只有3个和2个可前进位置，为避免程序对这些位置坐特殊的处理，我们习惯在这个迷宫外围再认为地增加一堵墙，以方便算法的编写，即将迷宫数组转化成如下形式：
-```
+```c++
 int maze[7][7] = {
   1, 1, 1, 1, 1, 1, 1,
   1, 0, 1, 0, 0, 0, 1,
@@ -35,7 +35,7 @@ int maze[7][7] = {
 **1. 递归法**
    基本原理：  
      对当前位置，如果其是出口位置，则路径找到。如果其可通，则前进到其每个方向进一步探索。
-```
+```c++
 typedef struct Position_
 {
       int x;
@@ -88,7 +88,7 @@ int main(){
 }
 ```
 然而，上述程序中，虽然能走到迷宫出口，走过的路劲距离在哪里呢？因此我们需要在从一个位置pos走到下一个位置next_pos的时候，将这种行走的路径也记录下来。一种常用方法是定义一个和迷宫一样大小的数据类型是Position的二维数组，记录每个位置(next_pos)的前驱位置(pos)。
-```
+```c++
 Position pre_position[5][5]=
 {  
     {{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}},  
@@ -99,7 +99,7 @@ Position pre_position[5][5]=
 };  
 ```
 或
-```
+```c++
 Position pre_position[7][7]=
 {  
     {{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}},  
@@ -116,7 +116,7 @@ Position pre_position[7][7]=
 pre_position[next_pos.x][next_pos.y] = pos;
 ```
 为此，需要修改一下留下足迹函数makeFoot用于记录其前一个位置，同时修改goMaze函数，提供当前位置pos的前一个位置pre_pos
-```
+```c++
 void makeFoot(Position pre_pos, Position pos) {
 	pre_position[pos.x][pos.y] = pre_pos; //记录路径
 	maze[pos.x][pos.y] = 2;
@@ -171,7 +171,7 @@ int main() {
 **2. 非递归法**
 
 上述的递归函数调用如同一般的函数调用一样，程序有一个运行栈管理这些调用和被调用函数的关系。我们也可以自己管理一个记录走过路的堆栈，来进行“回溯法”的回退。 迷宫问题的非递归深度优先探索的伪代码如下：
-```
+```c++
     初始化一个栈，入口位置入栈
 	while(栈不空){
 		//栈顶位置为当前位置
@@ -183,7 +183,7 @@ int main() {
 	}
 ```
 为了检测一个位置的四周探索方向有哪些已经探索过，我们可以修改类型Position，用于记录其哪些方向已经探索过，如下：
-```
+```c++
 typedef struct Position_
 {
       int x;
@@ -192,7 +192,7 @@ typedef struct Position_
 } Position;
 ```
 为此，我们需要一个数据元素类型是Position的堆栈，其代码如下：
-```
+```c++
 #include <malloc.h>
 #define STACK_INIT_SIZE 100
 #define STACKINCREMENT 10
@@ -250,7 +250,7 @@ bool IsEmpty(SqStack S) {
 **"前进到栈顶位置的下一个可通位置"**
 
 我们可以将检查从当前位置cur_pos是否可前进到下一个位置next_pos的代码写成一个辅助函数如下：
-```
+```c++
 //从cur_pos的四周找一个可前进的方向next_pos
 bool gotoNextPos(Position &cur_pos, Position &next_pos) {	
 	if ( isExitPos(cur_pos)) return false;
@@ -272,7 +272,7 @@ bool gotoNextPos(Position &cur_pos, Position &next_pos) {
 }
 ```
 因为有堆栈记录走过的路径，不需要一个pre_position这样的数组记录路径，留下足迹函数仍然是：
-```
+```c++
 void makeFoot(Position pos){
 	maze[pos.x][pos.y]=2; 
 }
@@ -281,7 +281,7 @@ void makeFoot(Position pos){
 
 最后，将上述迷宫算法的伪代码变成可执行的C语言代码，如下：
 
-```
+```c++
 //输出逆向的路径
 #include <iostream>
 void printPath(SqStack S) {
