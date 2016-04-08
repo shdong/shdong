@@ -38,23 +38,23 @@ int maze[7][7] = {
 ```c++
 typedef struct Position_
 {
-      int x;
-      int y;
+      int i;
+      int j;
 } Position;
 
 Position *end=0;
 
 bool canGo(Position pos){
-    return maze[pos.x][pos.y]==0; 
+    return maze[pos.i][pos.j]==0; 
 }
 
 bool isExitPos(Position pos){
-	if(pos.x==end->x &&pos.y==end->y) return true;
+	if(pos.i==end->i &&pos.j==end->j) return true;
 	return false;
 }
 
 void makeFoot(Position pos){
-	maze[pos.x][pos.y]=2; 
+	maze[pos.i][pos.j]=2; 
 }
 
 bool goMaze(Position pos){
@@ -64,23 +64,23 @@ bool goMaze(Position pos){
      makeFoot(pos);     //留下足迹
 
      Position next_pos;
-     next_pos.x = pos.x+1; next_pos.y = pos.y;      
+     next_pos.i = pos.i+1; next_pos.j = pos.j;      
      if(goMaze(next_pos) ) return true; 
 
-     next_pos.x = pos.x; next_pos.y = pos.y+1;
+     next_pos.i = pos.i; next_pos.j = pos.j+1;
      if(goMaze(next_pos) ) return true; 
 
-     next_pos.x = pos.x-1; next_pos.y = pos.y;
+     next_pos.i = pos.i-1; next_pos.j = pos.j;
      if(goMaze(next_pos) ) return true; 
 
-     next_pos.x = pos.x; next_pos.y = pos.y-1;
+     next_pos.i = pos.i; next_pos.j = pos.j-1;
      if(goMaze(next_pos) ) return true; 
      return false;
 }
 int main(){
 	Position start_pos,end_pos;
-	start_pos.x = 1,start_pos.y = 1;
-	end_pos.x = 5,  end_pos.y = 5;
+	start_pos.i = 1,start_pos.j = 1;
+	end_pos.i = 5,  end_pos.j = 5;
 	end = &end_pos;
 	goMaze(start_pos);
 
@@ -113,13 +113,13 @@ Position pre_position[7][7]=
 ```
 我们只要在上述的makeFoot函数中当从pos走到next_pos时，在next_pos对应的pre_position处做一下记录就可以了, 即：
 ```
-pre_position[next_pos.x][next_pos.y] = pos;
+pre_position[next_pos.i][next_pos.j] = pos;
 ```
 为此，需要修改一下留下足迹函数makeFoot用于记录其前一个位置，同时修改goMaze函数，提供当前位置pos的前一个位置pre_pos
 ```c++
 void makeFoot(Position pre_pos, Position pos) {
-	pre_position[pos.x][pos.y] = pre_pos; //记录路径
-	maze[pos.x][pos.y] = 2;
+	pre_position[pos.i][pos.j] = pre_pos; //记录路径
+	maze[pos.i][pos.j] = 2;
 }
 
 bool goMaze(Position pre_pos,Position pos) {
@@ -128,17 +128,17 @@ bool goMaze(Position pre_pos,Position pos) {
 	if(isExitPos(pos)) return true; //已经走到出口，不再探索	
 
 	Position next_pos;
-	next_pos.x = pos.x + 1; next_pos.y = pos.y;
+	next_pos.i = pos.i + 1; next_pos.j = pos.j;
 	
 	if (goMaze(pos,next_pos)) return true;     //从pos走到next_pos
 
-	next_pos.x = pos.x; next_pos.y = pos.y + 1;
+	next_pos.i = pos.i; next_pos.j = pos.j + 1;
 	if (goMaze(pos, next_pos)) return true;     //从pos走到next_pos
   
-	next_pos.x = pos.x - 1; next_pos.y = pos.y;
+	next_pos.i = pos.i - 1; next_pos.j = pos.j;
 	if (goMaze(pos, next_pos)) return true;     //从pos走到next_pos
 
-	next_pos.x = pos.x; next_pos.y = pos.y - 1;
+	next_pos.i = pos.i; next_pos.j = pos.j - 1;
 	if (goMaze(pos, next_pos)) return true;     //从pos走到next_pos
 	return false;
 }
@@ -146,19 +146,19 @@ bool goMaze(Position pre_pos,Position pos) {
 /输出逆向的路径
 #include <iostream>
 void printPath(Position start_pos, Position end_pos) {
-	for (Position pos = end_pos; pos.x != -1&&pos.y != -1;
-	      pos = pre_position[pos.x][pos.y]) {
-		std::cout << pos.x << "," << pos.y << "\n";
+	for (Position pos = end_pos; pos.i != -1&&pos.j != -1;
+	      pos = pre_position[pos.i][pos.j]) {
+		std::cout << pos.i << "," << pos.j << "\n";
 	}	
 }
 
 int main() {
 	Position start_pos, end_pos;
-	start_pos.x = 1, start_pos.y = 1;
-	end_pos.x = 5, end_pos.y = 5;
+	start_pos.i = 1, start_pos.j = 1;
+	end_pos.i = 5, end_pos.j = 5;
 	end = &end_pos;
 
-	Position pre_pos; pre_pos.x = -1; pre_pos.y = -1;
+	Position pre_pos; pre_pos.i = -1; pre_pos.j = -1;
 	goMaze(pre_pos,start_pos);
 
 	printPath(start_pos, end_pos);
@@ -255,15 +255,15 @@ bool IsEmpty(SqStack S) {
 bool gotoNextPos(Position &cur_pos, Position &next_pos) {	
 	if ( isExitPos(cur_pos)) return false;
 
-	next_pos.x = cur_pos.x;
-	next_pos.y = cur_pos.y;
+	next_pos.i = cur_pos.i;
+	next_pos.j = cur_pos.j;
 	next_pos.direction = 0;
 	while (cur_pos.direction < 4) {
 		switch (cur_pos.direction) {
-		case 0:  next_pos.x = cur_pos.x + 1;         break;
-		case 1:  next_pos.y = cur_pos.y + 1;         break;
-		case 2:  next_pos.x = cur_pos.x - 1;         break;
-		case 3:  next_pos.y = cur_pos.y - 1;         break;
+		case 0:  next_pos.i = cur_pos.i + 1;         break;
+		case 1:  next_pos.j = cur_pos.j + 1;         break;
+		case 2:  next_pos.i = cur_pos.i - 1;         break;
+		case 3:  next_pos.j = cur_pos.j - 1;         break;
 		}
 		cur_pos.direction++;
 		if (canGo(next_pos)) return true;
@@ -274,7 +274,7 @@ bool gotoNextPos(Position &cur_pos, Position &next_pos) {
 因为有堆栈记录走过的路径，不需要一个pre_position这样的数组记录路径，留下足迹函数仍然是：
 ```c++
 void makeFoot(Position pos){
-	maze[pos.x][pos.y]=2; 
+	maze[pos.i][pos.j]=2; 
 }
 
 ```
@@ -288,7 +288,7 @@ void printPath(SqStack S) {
 	Position pos;
 	while (!IsEmpty(S)) {
 		Pop(S, pos);
-		std::cout << pos.x << "," << pos.y << "\n";
+		std::cout << pos.i << "," << pos.j << "\n";
 	}
 }
 
@@ -316,8 +316,8 @@ void goMaze(Position start_pos) {
 
 int main() {
 	Position start_pos, end_pos;
-	start_pos.x = 1, start_pos.y = 1;
-	end_pos.x = 5, end_pos.y = 5;
+	start_pos.i = 1, start_pos.j = 1;
+	end_pos.i = 5, end_pos.j = 5;
 	end = &end_pos;
 	start_pos.direction = 0;
 	goMaze(start_pos);
@@ -327,3 +327,163 @@ int main() {
 
 ```
 [完整代码](maze2.cpp)
+
+**2. 广度优先搜索 **
+ 
+ 广度优先搜索类似于“往水里投石子，波纹将从中心向四周扩展”，即广度优先搜索类似于各种波的一层层向外扩扩散的过程。当我们处于当前的位置（状态），下一步将考虑和目前位置或（状态）紧邻的所有位置（状态），再下一步将考虑这些紧邻状态的紧邻状态，如此“一层一层”的向外（扩散）搜索。
+
+ 比如当前位置（状态）叫做S，然后依次访问其紧邻的状态B、C、D...，再依次访问B的紧邻、C的紧邻、D的紧邻...。因为B先于C先访问，所以B的紧邻也将先于C的紧邻先访问。为了实现这种“先进先出”的访问过程，广度优先遍历都是采用具有“先进先出”特性的队列来保持将来访问的所有位置（状态）的。
+
+另一方面，对访问过的每个位置（状态）要做一下**“标记”**，以防止“来回转圈子”，同时也希望记录这种搜索的路径。为此，我们可以定义一个和迷宫一样大小的标记矩阵，初始时，对每个位置标记成“未访问”，比如设置该位置的标记为一个整数“-1”，当访问该位置（状态）后，则这个位置对应的标记设置成其“访问前驱位置”，一方面标记了该位置已经访问过，一方面也记录了，是从哪一个“前驱位置”到达这个位置的。比如这个标记矩阵可以如下定义：
+```
+typedef struct Position_
+{    /* i=-1且j=-1表示未访问过这个位置 */
+	int i,j;
+} Position;
+
+Position predecessor[7][7] = {
+	{ { -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 } },
+	{ { -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 } },
+	{ { -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 } },
+	{ { -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 } },
+	{ { -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 } },
+	{ { -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 } },
+	{ { -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 } },
+}; 
+```
+迷宫问题需要用到一个队列，下面实现一个数据元素是Position类型的一个队列
+```
+typedef Position ElemType;
+
+typedef struct {
+	ElemType *data; //
+	int capacity;
+	int front, rear;
+}SqQueue;
+
+int capacity = 100;
+
+//------------------queue Start--------------
+#include <malloc.h>
+bool InitQueue(SqQueue &Q) {
+	Q.data = (ElemType *)malloc(capacity* sizeof(ElemType));
+	if (!Q.data) return false;
+	Q.rear = Q.front = 0; //空队列
+	return true;
+}
+
+bool EnQueue(SqQueue &Q, ElemType e) {
+	if ((Q.rear + 1) % Q.capacity == Q.front) return false;
+	Q.data[Q.rear] = e;
+	Q.rear = (Q.rear + 1) % Q.capacity;
+	return true;
+}
+
+bool DeQueue(SqQueue &Q, ElemType &e) {
+	if (Q.front == Q.rear) 	return false;   //空队列
+	e = Q.data[Q.front];
+	Q.front = (Q.front + 1) % Q.capacity;
+	return true;
+}
+
+bool IsEmpty(SqQueue Q) {
+	return Q.rear == Q.front;
+}
+```
+
+因此，迷宫问题的广度优先搜索的伪代码是：
+```
+void makeFoot(Position pre_pos, Position cur_pos) {
+	predecessor[cur_pos.i][cur_pos.j] = pre_pos;
+}
+bool isVisited(Position pos) {
+	return predecessor[pos.i][pos.j].i != -1
+		&& predecessor[pos.i][pos.j].j != -1;
+}
+
+bool canGo(Position pos) {
+	return maze[pos.i][pos.j] == 0 && !isVisited(pos);
+}
+
+void goMaze(Position start_pos) {
+	SqQueue Q; InitQueue(Q);
+	Position pre_pos = { 0,0 }, cur_pos, next_pos;
+	EnQueue(Q, start_pos);
+	makeFoot(pre_pos, start_pos);
+
+	while (!IsEmpty(Q)) {
+		DeQueue(Q, cur_pos);
+		if (isExitPos(cur_pos))
+			break; //找到出口
+
+		next_pos.i = cur_pos.i ; 
+		next_pos.j = cur_pos.j + 1; //东
+		if (canGo(next_pos)) { //未访问过
+			EnQueue(Q, next_pos);
+			makeFoot(cur_pos, next_pos);
+		}
+
+		next_pos.j = cur_pos.j - 1;//西	
+		if (canGo(next_pos)) { //未访问过
+			EnQueue(Q, next_pos);
+			makeFoot(cur_pos, next_pos);
+		}
+
+		next_pos.i = cur_pos.i +1 ; //南	
+		next_pos.j = cur_pos.j;		
+		if (canGo(next_pos)) { //未访问过
+			EnQueue(Q, next_pos);
+			makeFoot(cur_pos, next_pos);
+		}
+
+		next_pos.i = cur_pos.i - 1; //北		
+		if (canGo(next_pos)) { //未访问过
+			EnQueue(Q, next_pos);
+			makeFoot(cur_pos, next_pos);
+		}
+	}
+}
+
+//输出逆向的路径
+#include <iostream>
+void printPath(Position end_pos) {
+	Position pos = end_pos;
+	while ( pos.i != 0 
+		&& pos.j != 0 ) {
+		std::cout << pos.i << "," << pos.j << "\n";
+		pos = predecessor[pos.i][pos.j];		
+	}
+}
+
+int main() {
+	Position start_pos, end_pos;
+	start_pos.i = 1, start_pos.j = 1;
+	end_pos.i = 5, end_pos.j = 5;
+	end = &end_pos;
+	goMaze(start_pos);
+
+	printPath(end_pos);
+	return 0;
+}
+```
+
+[完整代码](maze3.cpp)
+
+注记：上面用一个Position的predecessor矩阵来“标记”和“记录前驱位置”，我们也可以用一个整数表示一个迷宫的位置。即将二维的位置下标(i,j)一一映射到一个一维的下标k（请参考数据结构的多为数组的一维存储的多维下标到一维存储位置的一一映射关系公式。）
+
+假如矩阵是m行n列（下标从(0,0)开始），即矩阵形如
+```
+(0,0), (0,1) ,..., (0,n-1)  
+(0,0), (0,1) ,..., (0,n-1)  
+...         ...      ...
+....        (i,j)    ...  
+...         ...      ...
+(m-1,0), (m-1,1) ,..., (m-1,n-1)
+```
+则       k = i*n+j ，
+
+反过来   i = k/n ,j = k%n
+
+因此，我们可以用一个整数(int)数组来进行“标记”和“记录前驱位置”,
+
+或者干脆，我们直接像前面的2个算法，直接在maze数组上做“标记”和“记录前驱位置”。

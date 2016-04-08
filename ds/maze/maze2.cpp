@@ -9,19 +9,19 @@ int maze[7][7] = {
 };
 typedef struct Postion_
 {
-	int x;
-	int y;
+	int i;
+	int j;
 	int direction; //0表示其四周为探索过，1,2,3,4分别表示其东南西北已经探索过。
 } Position;
 
 Position *end = 0;
 
 bool canGo(Position pos) {
-	return maze[pos.x][pos.y] == 0;
+	return maze[pos.i][pos.j] == 0;
 }
 
 bool isExitPos(Position pos) {
-	if (pos.x == end->x &&pos.y == end->y) return true;
+	if (pos.i == end->i &&pos.j == end->j) return true;
 	return false;
 }
 
@@ -84,15 +84,15 @@ bool IsEmpty(SqStack S) {
 bool gotoNextPos(Position &cur_pos, Position &next_pos) {	
 	if ( isExitPos(cur_pos)) return false;
 
-	next_pos.x = cur_pos.x;
-	next_pos.y = cur_pos.y;
+	next_pos.i = cur_pos.i;
+	next_pos.j = cur_pos.j;
 	next_pos.direction = 0;
 	while (cur_pos.direction < 4) {
 		switch (cur_pos.direction) {
-		case 0:  next_pos.x = cur_pos.x + 1;         break;
-		case 1:  next_pos.y = cur_pos.y + 1;         break;
-		case 2:  next_pos.x = cur_pos.x - 1;         break;
-		case 3:  next_pos.y = cur_pos.y - 1;         break;
+		case 0:  next_pos.i = cur_pos.i + 1;         break;
+		case 1:  next_pos.j = cur_pos.j + 1;         break;
+		case 2:  next_pos.i = cur_pos.i - 1;         break;
+		case 3:  next_pos.j = cur_pos.j - 1;         break;
 		}
 		cur_pos.direction++;
 		if (canGo(next_pos)) return true;
@@ -101,7 +101,7 @@ bool gotoNextPos(Position &cur_pos, Position &next_pos) {
 }
 
 void makeFoot(Position pos) {
-	maze[pos.x][pos.y] = 2;
+	maze[pos.i][pos.j] = 2;
 }
 
 
@@ -111,7 +111,7 @@ void printPath(SqStack S) {
 	Position pos;
 	while (!IsEmpty(S)) {
 		Pop(S, pos);
-		std::cout << pos.x << "," << pos.y << "\n";
+		std::cout << pos.i << "," << pos.j << "\n";
 	}
 }
 
@@ -139,8 +139,8 @@ void goMaze(Position start_pos) {
 
 int main() {
 	Position start_pos, end_pos;
-	start_pos.x = 1, start_pos.y = 1;
-	end_pos.x = 5, end_pos.y = 5;
+	start_pos.i = 1, start_pos.j = 1;
+	end_pos.i = 5, end_pos.j = 5;
 	end = &end_pos;
 	start_pos.direction = 0;
 	goMaze(start_pos);
