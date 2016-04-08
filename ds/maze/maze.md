@@ -390,8 +390,25 @@ bool IsEmpty(SqQueue Q) {
 	return Q.rear == Q.front;
 }
 ```
+迷宫问题的广度优先搜索的伪代码：
+```
+   入口位置入队，并标记其前驱位置
+   while(队列不空){
+      出队一个位置S;
+      if(S是出口位置) 
+           break; //结束
+      for(S的每个（东、南、西、北）探索方向紧邻位置P)
+          if(P未访问过){ 
+              将P入队;
+              并将S作为P的前驱位置记录下来(也就是做了访问标记);
+           }   
+   }
+   
+   输出路径; 
 
-因此，迷宫问题的广度优先搜索的伪代码是：
+```
+
+迷宫问题的广度优先搜索的代码：
 ```
 void makeFoot(Position pre_pos, Position cur_pos) {
 	predecessor[cur_pos.i][cur_pos.j] = pre_pos;
