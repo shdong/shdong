@@ -68,11 +68,9 @@ bool DeQueue(SqQueue &Q, ElemType &e) {
 bool IsEmpty(SqQueue Q) {
 	return Q.rear == Q.front;
 }
-
-
-
-
 //------------------queue End--------------
+
+
 void makeFoot(Position pre_pos, Position cur_pos) {
 	predecessor[cur_pos.i][cur_pos.j] = pre_pos;
 }
