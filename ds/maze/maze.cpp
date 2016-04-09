@@ -25,8 +25,6 @@ bool isExitPos(Position pos) {
 	return false;
 }
 
-
-
 Position pre_position[7][7] =
 {
 	{ { -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 },{ -1,-1 } },

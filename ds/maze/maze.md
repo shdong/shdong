@@ -313,20 +313,25 @@ void goMaze(Position start_pos) {
 	InitStack(S);
 	Push(S, start_pos);
 	makeFoot(start_pos);
+	bool success = false;
 
 	while (!IsEmpty(S)) {
-		while (Top(S, cur_pos) && cur_pos.direction>=4)
+		while (Top(S, cur_pos) && cur_pos.direction >= 4)
 			Pop(S, cur_pos);
 
-		if ( Pop(S, cur_pos) && gotoNextPos(cur_pos, next_pos)) {
+		if (Pop(S, cur_pos) && gotoNextPos(cur_pos, next_pos)) {
 			Push(S, cur_pos); //将修改了direction的当前位置cur_pos重新放回栈，走到next_pos
-			
-			Push(S, next_pos);		
+
+			Push(S, next_pos);
 			makeFoot(next_pos); //留下足迹
-			if (isExitPos(next_pos)) break;
+			if (isExitPos(next_pos)) {
+				success = true;
+				break; //走到出口
+			}
 		}
 	}
-	
+	if(success)
+		printPath(S);
 }
 
 int main() {
@@ -335,9 +340,8 @@ int main() {
 	end_pos.i = 5, end_pos.j = 5;
 	end = &end_pos;
 	start_pos.direction = 0;
-	goMaze(start_pos);
 
-	printPath(S);
+	goMaze(start_pos);
 
 	return 0;
 }
