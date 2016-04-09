@@ -201,8 +201,8 @@ int main() {
 ```c++
 typedef struct Position_
 {
-      int x;
-      int y;
+      int i;
+      int j;
       int direction; //0表示其四周未探索过，1,2,3,4分别表示其东南西北已经探索过。
 } Position;
 ```
@@ -326,7 +326,7 @@ void goMaze(Position start_pos) {
 			if (isExitPos(next_pos)) break;
 		}
 	}
-	printPath(S);
+	
 }
 
 int main() {
@@ -336,6 +336,8 @@ int main() {
 	end = &end_pos;
 	start_pos.direction = 0;
 	goMaze(start_pos);
+
+	printPath(S);
 
 	return 0;
 }
